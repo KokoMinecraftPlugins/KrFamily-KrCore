@@ -3,4 +3,6 @@ version: ${project.version}
 main: me.kokored.krcore.KrCore
 api-version: 1.15
 authors: [ Koko_red ]
-description: KrCore - KrFamily''s Core plugin
+website: https://hackmd.io/@Kokored7214/KrFamily-KrCore
+description: KrCore - KrFamily's Core plugin
+softdepend: [Vault]
