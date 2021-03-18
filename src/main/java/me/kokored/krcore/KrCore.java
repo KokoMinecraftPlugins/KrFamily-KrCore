@@ -1,18 +1,27 @@
 package me.kokored.krcore;
 
-import me.kokored.krcore.api.core.KrCoreAPI;
-import me.kokored.krcore.api.vault.VaultAPI;
+import me.kokored.krcore.api.MySQL;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class KrCore extends JavaPlugin {
 
-    public static KrCoreAPI krCoreAPI;
-    public static VaultAPI vaultAPI;
+    MySQL mySQL;
 
     @Override
     public void onEnable() {
 
-        sendStartupConsoleMsg();
+        getLogger().info(getLogo());
+        getLogger().info("\n" +
+                " {}===================================[ Enabled KrCore ]==================================={} " + "\n" +
+                " ||                                                                                        || " + "\n" +
+                " ||  Plugin  : KrCore                                                                      || " + "\n" +
+                " ||  Author  : Koko_red                                                                    || " + "\n" +
+                " ||  Website : https://kokominecraftplugins.github.io/threads/plugins/krcore.2103100.html  || " + "\n" +
+                " ||                                                                                        || " + "\n" +
+                " {}===================================[ Enabled KrCore ]==================================={} ");
+
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
 
         setupAPI();
 
@@ -20,41 +29,37 @@ public final class KrCore extends JavaPlugin {
 
     private void setupAPI() {
 
-        krCoreAPI = new KrCoreAPI();
-        vaultAPI = new VaultAPI();
+        mySQL = new MySQL();
 
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
-    }
 
-    private void sendStartupConsoleMsg() {
-        //Send Logo
         getLogger().info(getLogo());
-
-        //Send Plugin info & Support info
         getLogger().info("\n" +
-                " {}======================[ Enabled KrCore ]======================{} " + "\n" +
-                " ||                                                              || " + "\n" +
-                " ||  Name    : KrCore                                            || " + "\n" +
-                " ||  Author  : Koko_red                                          || " + "\n" +
-                " ||  Website : https://hackmd.io/@Kokored7214/KrFamily-KrCore    || " + "\n" +
-                " ||                                                              || " + "\n" +
-                " {}==========================[ KrCore ]=========================={} ");
+                " {}===================================[ Disabled KrCore ]==================================={} " + "\n" +
+                " ||                                                                                         || " + "\n" +
+                " ||  Plugin  : KrCore                                                                       || " + "\n" +
+                " ||  Author  : Koko_red                                                                     || " + "\n" +
+                " ||  Website : https://kokominecraftplugins.github.io/threads/plugins/krcore.2103100.html   || " + "\n" +
+                " ||                                                                                         || " + "\n" +
+                " {}===================================[ Disabled KrCore ]==================================={} ");
+
+        mySQL.disconnect();
+
     }
 
     private String getLogo() {
         String logo = "\n" +
-                "        ||||    ||||                   ||||||||||||                                                      " + "\n" +
-                "        ||||   ||||                  ||||        |||                                                     " + "\n" +
-                "        ||||  ||||     ||||    |||   ||||                ||||||||||     ||||    |||                      " + "\n" +
-                "        |||||||||      ||||  ||||    ||||              |||        |||   ||||  ||||       ||||||||        " + "\n" +
-                "        |||||||||      ||||||||      ||||              |||        |||   ||||||||       |||      |||      " + "\n" +
-                "        ||||  ||||     |||||         ||||         ||   |||        |||   |||||          ||||||||||        " + "\n" +
-                "        ||||   ||||    ||||          ||||       ||||   |||        |||   ||||           |||       ||      " + "\n" +
-                "        ||||    ||||   ||||            |||||||||||       ||||||||||     ||||             |||||||||       ";
+                "      ||||    ||||                   ||||||||||||                                                      " + "\n" +
+                "      ||||   ||||                  ||||        |||                                                     " + "\n" +
+                "      ||||  ||||     ||||    |||   ||||                ||||||||||     ||||    |||                      " + "\n" +
+                "      |||||||||      ||||  ||||    ||||              |||        |||   ||||  ||||       ||||||||        " + "\n" +
+                "      |||||||||      ||||||||      ||||              |||        |||   ||||||||       |||      |||      " + "\n" +
+                "      ||||  ||||     |||||         ||||         ||   |||        |||   |||||          ||||||||||        " + "\n" +
+                "      ||||   ||||    ||||          ||||       ||||   |||        |||   ||||           |||       ||      " + "\n" +
+                "      ||||    ||||   ||||            |||||||||||       ||||||||||     ||||             |||||||||       ";
         return logo;
     }
 
